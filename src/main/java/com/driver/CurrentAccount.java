@@ -41,5 +41,13 @@ public class CurrentAccount extends BankAccount{
             throw new ValidLicenseGenerationException();
         }
     }
+    public String getTradeLicenseId() {
+        return tradeLicenseId;
+    }
+
+    // Setter method for tradeLicenseId
+    public void setTradeLicenseId(String tradeLicenseId) {
+        this.tradeLicenseId = tradeLicenseId;
+    }
 
 }
