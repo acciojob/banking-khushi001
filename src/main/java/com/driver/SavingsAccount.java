@@ -1,5 +1,4 @@
 package com.driver;
-import com.driver.MaximumWithdrawLimitExceedException;
 
 public class SavingsAccount extends BankAccount{
     double rate;
@@ -20,24 +19,24 @@ public class SavingsAccount extends BankAccount{
             throw new MaximumWithdrawLimitExceedException();
         }
 
-        if (amount > balance) {
+        if (amount > getBalance()) {
             throw new InsufficientBalanceException();
         }
 
-        balance -= amount;
+        setBalance(getBalance() - amount);
 
 
     }
 
     public double getSimpleInterest(int years){
         // Return the final amount considering that bank gives simple interest on current amount
-        double interest = balance * rate * years / 100;
-        return balance + interest;
+        double interest = getBalance() * rate * years / 100;
+        return getBalance() + interest;
     }
 
     public double getCompoundInterest(int times, int years){
         // Return the final amount considering that bank gives compound interest on current amount given times per year
-        double compoundInterest = balance * Math.pow(1 + rate / (times * 100), times * years);
+        double compoundInterest = getBalance() * Math.pow(1 + rate / (times * 100), times * years);
         return compoundInterest;
     }
     public double getRate() {
