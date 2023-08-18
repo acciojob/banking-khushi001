@@ -1,20 +1,11 @@
 package com.driver;
-
 public class CurrentAccount extends BankAccount{
     String tradeLicenseId; //consists of Uppercase English characters only
-    double minBalance = 5000;
-    public CurrentAccount(String name, double balance, String tradeLicenseId) throws InsufficientBalanceException {
+
+    public CurrentAccount(String name, double balance, String tradeLicenseId) {
         // minimum balance is 5000 by default. If balance is less than 5000, throw "Insufficient Balance" exception
         super(name, balance, 5000); // Minimum balance requirement for current account is 5000
         this.tradeLicenseId = tradeLicenseId;
-
-        try {
-            if (balance < minBalance) {
-                throw new InsufficientBalanceException();
-            }
-        } catch (InsufficientBalanceException e) {
-            System.out.println(e.getMessage());
-        }
     }
 
     public void validateLicenseId() throws Exception  {
@@ -24,18 +15,17 @@ public class CurrentAccount extends BankAccount{
         // If it is not possible, throw "Valid License can not be generated" Exception
         char[] chars = tradeLicenseId.toCharArray();
         for (int i = 0; i < chars.length - 1; i++) {
-            try {
-                if (chars[i] == chars[i + 1]) {
-                    rearrangeLicenseIdChars(chars, i);
-                    return;
-                }
-            } catch (ValidLicenseGenerationException e) {
-                System.out.println(e.getMessage());
+
+            if (chars[i] == chars[i + 1]) {
+                rearrangeLicenseIdChars(chars, i);
+                return;
             }
+
         }
+        throw new Exception("Valid License can not be generated");
 
     }
-    private void rearrangeLicenseIdChars(char[] chars, int index) throws ValidLicenseGenerationException {
+    private void rearrangeLicenseIdChars(char[] chars, int index) throws Exception {
         // Rearrange the characters of the license ID to create a valid license ID
         if (index + 1 < chars.length) {
             char temp = chars[index];
@@ -43,7 +33,7 @@ public class CurrentAccount extends BankAccount{
             chars[index + 1] = temp;
             tradeLicenseId = new String(chars);
         } else {
-            throw new ValidLicenseGenerationException();
+            throw new Exception("Valid License can not be generated");
         }
     }
     public String getTradeLicenseId() {
