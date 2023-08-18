@@ -20,7 +20,7 @@ public class SavingsAccount extends BankAccount{
             try {
                 throw new MaximumWithdrawLimitExceedException();
             } catch (MaximumWithdrawLimitExceedException e) {
-                throw new RuntimeException(e);
+                System.out.println("Maximum Withdraw Limit Exceed");
             }
         }
 
