@@ -24,12 +24,7 @@ public class SavingsAccount extends BankAccount{
             }
         }
 
-        try {
-            super.withdraw(amount);
-        } catch (InsufficientBalanceException e) {
-            // Handle the InsufficientBalanceException here if needed
-            throw e; // Rethrow the exception
-        }
+        super.withdraw(amount);
 
     }
 

@@ -25,20 +25,16 @@ public class CurrentAccount extends BankAccount{
                 return;
             }
         }
+        throw new ValidLicenseGenerationException();
 
     }
-    private void rearrangeLicenseIdChars(char[] chars, int index) throws ValidLicenseGenerationException {
-        // Rearrange the characters of the license Id to create a valid license Id
-        // If it's not possible, throw ValidLicenseGenerationException
-
-        // Example implementation: rearrange the characters by swapping the consecutive characters
+    private void rearrangeLicenseIdChars(char[] chars, int index) {
+        // Rearrange the characters of the license ID to create a valid license ID
         if (index + 1 < chars.length) {
             char temp = chars[index];
             chars[index] = chars[index + 1];
             chars[index + 1] = temp;
             tradeLicenseId = new String(chars);
-        } else {
-            throw new ValidLicenseGenerationException();
         }
     }
     public String getTradeLicenseId() {
