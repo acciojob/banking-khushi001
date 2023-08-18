@@ -39,7 +39,7 @@ public class BankAccount {
 
 
     public void deposit(double amount) {
-        this.balance+=amount;
+        balance+=amount;
     }
 
     public void withdraw(double amount) throws Exception {
@@ -47,7 +47,7 @@ public class BankAccount {
         if(balance-amount<minBalance){
             throw new Exception("Insufficient Balance");
         }else {
-            this.balance-=amount;
+            balance-=amount;
         }
     }
     public String generateAccountNumber(int digits, int sum) throws Exception{
