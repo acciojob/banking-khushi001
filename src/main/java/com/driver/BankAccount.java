@@ -45,9 +45,9 @@ public class BankAccount {
         // Remember to throw "Insufficient Balance" exception, if the remaining amount would be less than minimum balance
         if (balance - amount < minBalance) {
             throw new InsufficientBalanceException();
+        }else{
+            balance -= amount;
         }
-
-        balance -= amount;
     }
 
     public String getName() {
