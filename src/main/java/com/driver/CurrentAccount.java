@@ -2,7 +2,7 @@ package com.driver;
 
 public class CurrentAccount extends BankAccount{
     String tradeLicenseId; //consists of Uppercase English characters only
-
+    double minBalance = 5000;
     public CurrentAccount(String name, double balance, String tradeLicenseId) throws InsufficientBalanceException {
         // minimum balance is 5000 by default. If balance is less than 5000, throw "Insufficient Balance" exception
         super(name, balance, 5000); // Minimum balance requirement for current account is 5000
@@ -28,13 +28,15 @@ public class CurrentAccount extends BankAccount{
         throw new ValidLicenseGenerationException();
 
     }
-    private void rearrangeLicenseIdChars(char[] chars, int index) {
+    private void rearrangeLicenseIdChars(char[] chars, int index) throws ValidLicenseGenerationException {
         // Rearrange the characters of the license ID to create a valid license ID
         if (index + 1 < chars.length) {
             char temp = chars[index];
             chars[index] = chars[index + 1];
             chars[index + 1] = temp;
             tradeLicenseId = new String(chars);
+        } else {
+            throw new ValidLicenseGenerationException();
         }
     }
     public String getTradeLicenseId() {
