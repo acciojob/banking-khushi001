@@ -17,21 +17,18 @@ public class BankAccount {
         //Each digit of an account number can lie between 0 and 9 (both inclusive)
         //Generate account number having given number of 'digits' such that the sum of digits is equal to 'sum'
         //If it is not possible, throw "Account Number can not be generated" exception
-        if (sum < 0 || sum > digits * 9) {
+        if (sum < 0 || sum > 9 * digits) {
             throw new AccountNumberGenerationException();
         }
 
         StringBuilder accountNumber = new StringBuilder();
-        int remainingSum = sum;
-
-        for (int i = 0; i < digits - 1; i++) {
-            int maxDigitValue = Math.min(remainingSum, 9);
+        for (int i = 0; i < digits; i++) {
+            int maxDigitValue = Math.min(sum, 9);
             int randomDigit = (int) (Math.random() * (maxDigitValue + 1));
             accountNumber.append(randomDigit);
-            remainingSum -= randomDigit;
+            sum -= randomDigit;
         }
 
-        accountNumber.append(remainingSum);
         return accountNumber.toString();
 
     }
