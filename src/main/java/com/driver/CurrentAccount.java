@@ -8,24 +8,31 @@ public class CurrentAccount extends BankAccount{
         super(name, balance, 5000); // Minimum balance requirement for current account is 5000
         this.tradeLicenseId = tradeLicenseId;
 
-        if (balance < minBalance) {
-            throw new InsufficientBalanceException();
+        try {
+            if (balance < minBalance) {
+                throw new InsufficientBalanceException();
+            }
+        } catch (InsufficientBalanceException e) {
+            System.out.println(e.getMessage());
         }
     }
 
-    public void validateLicenseId() throws ValidLicenseGenerationException  {
+    public void validateLicenseId() throws Exception  {
         // A trade license Id is said to be valid if no two consecutive characters are same
         // If the license Id is valid, do nothing
         // If the characters of the license Id can be rearranged to create any valid license Id
         // If it is not possible, throw "Valid License can not be generated" Exception
         char[] chars = tradeLicenseId.toCharArray();
         for (int i = 0; i < chars.length - 1; i++) {
-            if (chars[i] == chars[i + 1]) {
-                rearrangeLicenseIdChars(chars, i);
-                return;
+            try {
+                if (chars[i] == chars[i + 1]) {
+                    rearrangeLicenseIdChars(chars, i);
+                    return;
+                }
+            } catch (ValidLicenseGenerationException e) {
+                System.out.println(e.getMessage());
             }
         }
-        throw new ValidLicenseGenerationException();
 
     }
     private void rearrangeLicenseIdChars(char[] chars, int index) throws ValidLicenseGenerationException {
