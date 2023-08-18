@@ -51,7 +51,7 @@ public class BankAccount {
             }
             balance -= amount;
         } catch (InsufficientBalanceException e) {
-            System.out.println(e.getMessage());
+            System.out.println("Insufficient Balance: " + e.getMessage());
         }
 
     }
