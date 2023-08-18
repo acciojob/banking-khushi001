@@ -1,9 +1,9 @@
 package com.driver;
 
-import java.util.Arrays;
 
 public class BankAccount {
-
+    public BankAccount() {
+    }
     private String name;
     private double balance;
     private double minBalance;
@@ -58,17 +58,21 @@ public class BankAccount {
         if(sum < 0 || sum > 9 * digits){
             throw new Exception("Account Number can not be generated");
         }
-        int[] num=new int[digits];
-
-        for(int i=0; i<digits; i++){
-            if(sum>=9){
-                num[i]=9;
-                sum=sum-9;
-            }else{
-                num[i]=sum;
-                sum=0;
-            }
+        int[] accountDigits = new int[digits];
+        for (int i = 0; i < digits - 1; i++) {
+            int maxDigitValue = Math.min(sum, 9);
+            int randomDigit = (int) (Math.random() * (maxDigitValue + 1));
+            accountDigits[i] = randomDigit;
+            sum -= randomDigit;
         }
-        return Arrays.toString(num);
+
+        accountDigits[digits - 1] = sum;
+
+        StringBuilder accountNumber = new StringBuilder();
+        for (int digit : accountDigits) {
+            accountNumber.append(digit);
+        }
+
+        return accountNumber.toString();
     }
 }
