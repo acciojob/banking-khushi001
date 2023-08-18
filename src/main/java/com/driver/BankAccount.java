@@ -1,7 +1,8 @@
 package com.driver;
 
 public class BankAccount {
-
+    public BankAccount() {
+    }
     private String name;
     private double balance;
     private double minBalance;
