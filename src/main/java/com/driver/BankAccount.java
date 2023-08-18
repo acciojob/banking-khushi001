@@ -3,8 +3,7 @@ package com.driver;
 import java.util.Arrays;
 
 public class BankAccount {
-    public BankAccount() {
-    }
+
     private String name;
     private double balance;
     private double minBalance;
