@@ -10,12 +10,7 @@ public class Main {
 
             // Depositing and withdrawing from accounts
             savingsAccount.deposit(2000);
-            savingsAccount.withdraw(1500);
-
-            currentAccount.deposit(3000);
-            currentAccount.validateLicenseId();
-
-            studentAccount.deposit(100);
+            System.out.println(savingsAccount.getSimpleInterest(2));
 
             // Display account information or perform other actions as needed
             // ...
